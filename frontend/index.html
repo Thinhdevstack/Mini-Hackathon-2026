@@ -26,13 +26,14 @@
     <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></symbol>
   </defs></svg>
+  <a class="skip-link" href="#main-content">Đến nội dung chính</a>
   <div class="app-shell">
     <aside class="sidebar">
       <a class="brand" href="#" aria-label="Interna trang chính"><span class="brand-mark">in<span>·</span></span><span>interna<small>GROW THROUGH WORK</small></span></a>
       <div class="company"><span class="company-icon">N</span><div><strong>Nova Tech</strong><small>Không gian công ty mẫu</small></div></div>
       <p class="nav-label">KHÔNG GIAN LÀM VIỆC</p>
       <nav id="main-nav" aria-label="Điều hướng chính"></nav>
-      <div class="sidebar-note"><span class="tiny-pill">LOCAL AI</span><h3>Học từ công việc thật.</h3><p>Trợ lý đồng hành dựa trên tài liệu và quy trình của công ty.</p><div class="note-orbit" aria-hidden="true"><span>✳</span></div></div>
+      <div class="sidebar-note"><span class="tiny-pill">AI MENTOR</span><h3>Học từ công việc thật.</h3><p>Trợ lý đồng hành dựa trên tài liệu và quy trình của công ty.</p><div class="note-orbit" aria-hidden="true"><span>✳</span></div></div>
       <div class="sidebar-bottom">
         <button class="reset-button" id="logout-btn" style="color:#b91c1c;margin-bottom:6px"><svg class="icon"><use href="#i-logout"/></svg>Đăng xuất</button>
         <button class="reset-button" id="reset-demo"><svg class="icon"><use href="#i-reset"/></svg>Đặt lại dữ liệu demo</button>
@@ -41,12 +42,12 @@
     </aside>
     <div class="workspace">
       <header class="topbar">
-        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-label">Công việc của tôi</strong></div>
+        <div class="breadcrumb">Không gian làm việc <span>/</span> <strong id="breadcrumb-label">Công việc của tôi</strong></div>
         <div class="role-switch" role="group" aria-label="Chuyển màn hình demo"><button data-role="intern" aria-pressed="true">Thực tập sinh</button><button data-role="mentor" aria-pressed="false">Mentor</button></div>
         <span class="demo-badge" id="connection-badge"><span></span>AI giả lập</span>
       </header>
       <main id="main-content" tabindex="-1"></main>
-      <footer class="page-footer"><span>Interna / Mini Hackathon 2026</span><span>Dữ liệu minh họa · Chuyển vai trò chỉ phục vụ demo</span></footer>
+      <footer class="page-footer"><span>Interna / Mini Hackathon 2026</span><span>MVP 30% · Dữ liệu lưu trên trình duyệt này</span></footer>
     </div>
   </div>
 
@@ -58,10 +59,17 @@
           <span class="brand-mark">in<span>·</span></span>
           <span>interna<small>GROW THROUGH WORK</small></span>
         </div>
-        <h2>Đăng nhập hệ thống</h2>
+        <span class="login-kicker">KHÔNG GIAN THỰC TẬP · MVP 30%</span><h2>Bắt đầu hành trình của bạn.</h2>
         <p>Không gian làm việc & Đào tạo thực tập sinh Nova Tech</p>
       </div>
 
+      <div class="demo-entry">
+        <p>Khám phá bản demo với một vai trò</p>
+        <button type="button" class="demo-role" data-demo-user="dat"><span class="demo-role-icon">01</span><span><strong>Tôi là thực tập sinh</strong><small>Nhận việc, hỏi AI và gửi bài cho mentor</small></span><span aria-hidden="true">→</span></button>
+        <button type="button" class="demo-role" data-demo-user="mentor_admin"><span class="demo-role-icon">02</span><span><strong>Tôi là mentor</strong><small>Theo dõi tiến độ và phản hồi bài làm</small></span><span aria-hidden="true">→</span></button>
+        <small>Tài khoản mẫu · Dữ liệu chỉ lưu trên trình duyệt này.</small>
+      </div>
+      <details class="login-manual"><summary>Đăng nhập bằng tài khoản khác</summary>
       <form id="login-form">
         <div class="form-group">
           <label for="login-email">Email tài khoản</label>
@@ -73,6 +81,7 @@
         </div>
         <button type="submit" class="btn primary btn-full">Đăng nhập ngay</button>
       </form>
+      </details>
     </div>
   </div>
 

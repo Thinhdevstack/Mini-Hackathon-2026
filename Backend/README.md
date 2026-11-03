@@ -59,3 +59,17 @@ uvicorn main:app --reload --port 8000
 ## 🔮 Lộ trình phát triển các vòng tiếp theo (Roadmap)
 - **Vòng 60%:** Đóng gói Dockerfile chuẩn và triển khai lên **Google Cloud Run**; Tích hợp Database PostgreSQL lưu trữ tập trung.
 - **Vòng Chung kết (100%):** Mở rộng kiến trúc **Multi-Agent** (Code Review Agent, Mentor Evaluation Agent, Security Policy Auditor).
+
+
+### Sửa tình trạng AI chờ lâu (MVP 30%)
+- Ollama: gửi `think: false`, tối đa 512 token, giữ model trong bộ nhớ 15 phút; timeout kết nối 5 giây / chờ dữ liệu 60 giây. Frontend chờ 90 giây để nhận lỗi từ backend.
+- Gemini: chỉ một lần gọi REST có timeout, không nối chuỗi SDK retry và REST fallback.
+- Prompt dùng tối đa 4 tin nhắn, mỗi tin nhắn tối đa 2.000 ký tự; phản hồi yêu cầu ngắn gọn. Phản hồi rỗng trả 502, timeout trả 504; frontend hiển thị lý do và giữ bản nháp.
+- Chỉ chạy một backend trên cổng 8000. `GET /` trả `chat_policy: bounded-no-thinking-v1` để xác nhận bản sửa đang chạy.
+- Sửa `Modelfile` không đổi model đã cài. Bản sửa tương thích model `StrictMentor` hiện tại bằng cách tắt thinking trong từng request; không tự tải hoặc thay model trên máy.
+- Kiểm tra offline: `python test_ai_transport.py`, `python test_prompt.py`.
+
+### Nguồn luật của AI (RAG)
+Backend đọc `Backend/data/**/*.md` và `docs/*.md` ở gốc repository. Khi trùng tên file, tài liệu trong `docs/` thay thế bản cũ trong `Backend/data/` trong chỉ mục đang sử dụng. Vì vậy `docs/cpp_rule.md` là luật C++ chính thức và `docs/project_structure.md` được tra cứu cùng các tài liệu onboarding/nghiệp vụ.
+
+Sau khi sửa Markdown, khởi động lại backend để cập nhật chỉ mục. Collection được chọn theo nội dung và cấu hình chia đoạn; không cần xóa ChromaDB cũ. Đây là tra cứu tài liệu khi trả lời (RAG), không phải huấn luyện lại trọng số model. Kiểm tra chọn đúng nguồn bằng `python test_rule_index.py`.

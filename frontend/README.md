@@ -90,3 +90,11 @@ Các ví dụ nghiệp vụ/quy chuẩn trong ứng dụng là dữ liệu đề
 ## Kiểm tra logic
 
 `outputs/qa/check-demo.cjs` (chạy từ thư mục gốc dự án bằng Node) kiểm tra luồng review, giữ lịch sử, trạng thái không hợp lệ, nâng cấp dữ liệu cũ, hợp đồng API, lỗi mạng, bản nháp khi chờ AI, nội dung nhập được escape và đặt lại demo. Đây là mô phỏng DOM để kiểm tra logic, không thay thế kiểm tra bố cục trên trình duyệt hoặc tích hợp backend thật.
+
+
+### Bản dự thi MVP 30% — cập nhật 04/11/2026
+Mở `index.html`, chọn **Tôi là thực tập sinh** hoặc **Tôi là mentor** để dùng tài khoản mẫu. Có thể mở “Đăng nhập bằng tài khoản khác” khi cần. Chọn nhiệm vụ → bắt đầu làm → đọc tài liệu/hỏi AI → nhập kết quả và gửi mentor. Đăng xuất rồi chọn mentor để xem bài trên cùng trình duyệt.
+
+Dữ liệu lưu tại `interna-v3` trên trình duyệt hiện tại; đăng nhập là mô phỏng. API mặc định trỏ tới `http://localhost:8000`. Khi backend không chạy, giao diện báo lỗi và giữ câu hỏi để gửi lại. Để demo offline, đặt `mode: "demo"` trong `config.js`; phản hồi sẽ được ghi rõ là giả lập.
+
+Kiểm tra hồi quy từ thư mục gốc: `node outputs/qa/check-demo.cjs`. Phạm vi chưa bao gồm đồng bộ nhiều máy, xác thực thật hoặc multi-agent.

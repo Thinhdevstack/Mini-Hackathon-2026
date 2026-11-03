@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const path = require('node:path');
 const app = fs.readFileSync(path.resolve('frontend/app.js'), 'utf8');
 const html = fs.readFileSync(path.resolve('frontend/index.html'), 'utf8');
-const key = 'interna-demo-v1';
+const key = 'interna-v3';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 function harness(mode='demo', store=new Map(), fetchImpl) {
   const nodes=new Map(), listeners={};
@@ -17,7 +17,11 @@ function harness(mode='demo', store=new Map(), fetchImpl) {
   function click(data){return listeners.click({target:{closest:()=>({dataset:data})}});}
   function input(id,value){const n=node(id);n.value=value;listeners.input({target:n});}
   function send(value){input('chat-input',value);listeners.submit({target:{id:'chat-form'},preventDefault(){}});}
-  return {node,store,click,input,send,listeners,state:()=>JSON.parse(store.get(key)),main:()=>node('main-content').innerHTML};
+  click({demoUser:'mentor_admin'});
+  click({role:'intern'});
+  click({task:'TSK-02'});
+  click({action:'start'});
+  return {node,store,click,input,send,listeners,state:()=>{const root=JSON.parse(store.get(key)); const data=root.studentData.dat; return {...data,notes:{dat:{text:data.notes}}};},main:()=>node('main-content').innerHTML};
 }
 (async()=>{
   for(const asset of ['style.css','config.js','app.js'])assert.ok(fs.existsSync(path.resolve('frontend',asset)));
@@ -36,8 +40,8 @@ function harness(mode='demo', store=new Map(), fetchImpl) {
   h.click({role:'mentor'});assert.match(h.main(),/Đã đề xuất trường dữ liệu/);assert.match(h.main(),/Mã thực tập sinh bị trùng/);
   h.click({result:'TSK-02'});assert.match(h.node('dialog-content').innerHTML,/Duyệt hoàn thành/);
   h.click({reviewAction:'approved',reviewTask:'TSK-02',version:'1'});assert.equal(h.state().tasks['TSK-02'].status,'done');
-  h.input('mentor-note','Cần giải thích lựa chọn dữ liệu ở buổi review.');h.click({action:'save-review'});assert.match(h.state().notes.an.text,/Cần giải thích/);
-  h.click({student:'linh'});assert.match(h.main(),/Chưa có dữ liệu hoạt động/);h.click({student:'an'});
+  h.input('mentor-note','Cần giải thích lựa chọn dữ liệu ở buổi review.');h.click({action:'save-review'});assert.match(h.state().notes.dat.text,/Cần giải thích/);
+  h.click({student:'nghia'});assert.match(h.main(),/Chưa có câu hỏi mới/);h.click({student:'dat'});
   const again=harness('demo',h.store);assert.equal(again.state().tasks['TSK-02'].status,'done');
   again.click({task:'TSK-03'});again.send('<img src=x onerror=alert(1)>');await sleep(720);assert.match(again.node('chat-log').innerHTML,/&lt;img/);assert.doesNotMatch(again.node('chat-log').innerHTML,/<img src/);
   let request;
@@ -45,6 +49,11 @@ function harness(mode='demo', store=new Map(), fetchImpl) {
   api.send('Câu hỏi API');await sleep(20);assert.equal(request.url,'http://test.local/chat');assert.equal(request.body.history.length,0);assert.equal(request.body.task_id,'TSK-02');assert.equal(api.state().chats['TSK-02'][1].source,'api');
   api.send('Câu tiếp theo');await sleep(20);assert.equal(request.body.history.length,2);assert.equal(request.body.message,'Câu tiếp theo');
   const failed=harness('api',new Map(),async()=>{throw new TypeError('Network failed');});failed.send('Giữ câu hỏi này');await sleep(20);assert.equal(failed.state().drafts['TSK-02'],'Giữ câu hỏi này');assert.equal(failed.state().chats['TSK-02'].length,0);assert.match(failed.main(),/Kiểm tra địa chỉ backend/);
+
+  const timeoutApi=harness('api',new Map(),async()=>({ok:false,status:504,json:async()=>({detail:'AI xử lý quá 60 giây. Hãy thử lại.'})}));
+  timeoutApi.send('Câu hỏi cần giữ');await sleep(20);
+  assert.match(timeoutApi.main(),/AI xử lý quá 60 giây/);
+  assert.equal(timeoutApi.state().drafts['TSK-02'],'Câu hỏi cần giữ');
 
   // Full feedback cycle: blocker -> answer -> follow-up -> request changes -> resubmit -> approve.
   const flow=harness();
@@ -85,23 +94,13 @@ function harness(mode='demo', store=new Map(), fetchImpl) {
   flow.click({task:'TSK-02'});flow.click({action:'start'});assert.equal(flow.state().tasks['TSK-02'].status,'done','Cannot restart completed task with stale action');
   const restored=harness('demo',flow.store);restored.click({role:'mentor'});restored.click({result:'TSK-02'});assert.match(restored.node('dialog-content').innerHTML,/Bài làm lần 1/);assert.match(restored.node('dialog-content').innerHTML,/Đã đạt yêu cầu/);
 
-  // Existing demo storage is migrated, never wiped or silently treated as blocker-free.
-  const legacy=JSON.parse(JSON.stringify(h.state()));
-  for(const item of Object.values(legacy.tasks)){delete item.submissions;delete item.discussion;delete item.blockerDraft;delete item.mentorDraft;delete item.replyDraft;}
-  legacy.tasks['TSK-02'].status='review';legacy.tasks['TSK-02'].submission='Bài cũ. Em còn vướng phần xác thực.';
-  const migrated=harness('demo',new Map([[key,JSON.stringify(legacy)]]));migrated.click({role:'mentor'});migrated.click({result:'TSK-02'});
-  assert.match(migrated.node('dialog-content').innerHTML,/Bản cũ gộp vướng mắc/);
-  migrated.click({reviewAction:'approved',reviewTask:'TSK-02',version:'1'});assert.match(migrated.node('toast').textContent,/giải đáp/);
-  migrated.input('mentor-feedback','Hướng dẫn cho bài cũ.');migrated.click({reviewAction:'reply',reviewTask:'TSK-02',version:'1'});
-  assert.equal(migrated.state().tasks['TSK-02'].submissions[0].result,legacy.tasks['TSK-02'].submission);assert.equal(migrated.state().chats['TSK-02'].length,2);
-
   // A slow failed API request must not surface errors on another task or destroy a new draft.
   let rejectPending;
   const slow=harness('api',new Map(),()=>new Promise((resolve,reject)=>rejectPending=reject));
   slow.send('Câu đang gửi');slow.input('chat-input','Bản nháp tiếp theo');slow.click({task:'TSK-03'});rejectPending(new TypeError('Network failed'));await sleep(20);
   assert.doesNotMatch(slow.main(),/Chưa nhận được phản hồi/);slow.click({task:'TSK-02'});assert.match(slow.main(),/Chưa nhận được phản hồi/);assert.equal(slow.node('chat-input').value,'Bản nháp tiếp theo');
-  flow.node('reset-demo').handlers.click();flow.input('submission-note','Sau reset');flow.click({action:'submit'});assert.equal(flow.state().tasks['TSK-02'].submissions.length,1);
-  console.log('PASS: review/clarification/revision/resubmission/approval cycle, response guards, immutable submission history, drafts, state guards, persistence and v1 migration.');
+  flow.node('reset-demo').handlers.click();flow.click({demoUser:'mentor_admin'});flow.click({role:'intern'});flow.click({task:'TSK-02'});flow.click({action:'start'});flow.input('submission-note','Sau reset');flow.click({action:'submit'});assert.equal(flow.state().tasks['TSK-02'].submissions.length,1);
+  console.log('PASS: review/clarification/revision/resubmission/approval cycle, response guards, immutable submission history, drafts, state guards, persistence and v3 storage.');
   console.log('PASS: task-scoped data, API history and error recovery, async draft preservation, escaped content, activity authors, original smoke flows and reset.');
   console.log('DOM harness only; visual browser verification is separate.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

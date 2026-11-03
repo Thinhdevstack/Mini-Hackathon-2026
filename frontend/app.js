@@ -72,7 +72,8 @@
   const docs = {
     onboarding: { title: "Cẩm nang thực tập", file: "onboarding.md", category: "ONBOARDING", summary: "Vai trò, cách nhận việc và quy trình phối hợp cùng mentor.", sections: [["ONB-01 · Nhận và làm nhiệm vụ", "Thực tập sinh đọc yêu cầu, làm rõ điểm chưa hiểu, thực hiện và gửi kết quả để mentor xem. Cần nêu cách làm và các vấn đề còn vướng khi gửi bài."], ["ONB-02 · Sử dụng AI nội bộ", "AI hỗ trợ tìm hiểu tài liệu, đặt câu hỏi và gợi ý hướng giải quyết. Thực tập sinh tự thực hiện công việc. Lịch sử trao đổi theo task được cung cấp cho mentor để hiểu quá trình học tập."], ["ONB-03 · Vai trò mentor", "Mentor xem kết quả và quá trình làm việc để đưa ra phản hồi. Tổng hợp từ AI chỉ hỗ trợ; quyết định đánh giá thuộc về mentor."]] },
     requirements: { title: "Yêu cầu dự án Intern Portal", file: "intern_portal.md", category: "NGHIỆP VỤ", summary: "Phạm vi dự án, dữ liệu thực tập sinh và tiêu chí nghiệm thu.", sections: [["REQ-01 · Hồ sơ thực tập sinh", "Hồ sơ có mã thực tập sinh, họ tên, nhóm, mentor phụ trách, ngày bắt đầu, ngày kết thúc và trạng thái. Mã không được rỗng hoặc trùng. Ngày kết thúc không được trước ngày bắt đầu."], ["REQ-02 · Vòng đời nhiệm vụ", "Task đi qua các trạng thái: Chưa bắt đầu → Đang làm → Chờ mentor. Mentor có thể giải đáp mà giữ nguyên trạng thái, yêu cầu chỉnh sửa (Cần chỉnh sửa → nộp lại → Chờ mentor), hoặc duyệt Hoàn thành. Mỗi lần nộp giữ riêng kết quả, vướng mắc và phản hồi."], ["REQ-03 · Tiêu chí nghiệm thu", "Đề xuất dữ liệu phải giải thích được vai trò từng trường và quy tắc kiểm tra. Tình huống kiểm thử cần có đầu vào và kết quả mong đợi."]] },
-    cpp: { title: "Quy chuẩn C++ của team", file: "cpp_rule.md", category: "KỸ THUẬT", summary: "Chuẩn C++17, quyền sở hữu tài nguyên và quy ước đặt tên.", sections: [["CPP-01 · Phiên bản", "Dự án demo thống nhất dùng C++17. Cấu hình build phải thể hiện chuẩn này."], ["CPP-02 · Quản lý tài nguyên", "Ưu tiên đối tượng tự quản lý tài nguyên và container chuẩn. Không dùng new/delete trực tiếp trong code ứng dụng. Khi cần cấp phát động có một chủ sở hữu, ưu tiên unique_ptr; chỉ dùng shared_ptr khi có nhu cầu chia sẻ quyền sở hữu."], ["CPP-04 · Đặt tên", "Biến và hàm dùng camelCase; class và struct dùng PascalCase. Tên phải thể hiện ý nghĩa."], ["CPP-05 · Kiểm tra đầu vào", "Dữ liệu bên ngoài cần được kiểm tra trước khi sử dụng. Lỗi phải được thông báo rõ, không báo thành công khi thao tác thất bại."]] },
+    cpp: { title: "Quy chuẩn C++ của team", file: "cpp_rule.md", category: "KỸ THUẬT", summary: "C++17 trở lên, cấm raw pointer và quy ước đặt tên.", sections: [["CPP-01 · Chuẩn ngôn ngữ", "Bắt buộc C++17 trở lên; cấu hình build phải khai báo chuẩn tương ứng."], ["CPP-02 · Con trỏ và quản lý bộ nhớ", "Cấm raw pointer, kể cả không sở hữu (int*, const T*). Không dùng new/delete hoặc .get()/.release() để lách quy định. Dùng unique_ptr khi sở hữu độc quyền; shared_ptr khi thực sự chia sẻ quyền sở hữu. Có thể dùng biến giá trị, container hoặc tham chiếu T&, const T& khi phù hợp."], ["CPP-03 · Đặt tên", "Biến, tham số, biến thành viên và hàm dùng camelCase; class dùng PascalCase. Không dùng snake_case hoặc tiền tố m_ cho biến."], ["CPP-04 / CPP-05 · Ví dụ", "Đúng: std::unique_ptr<int> studentScore = std::make_unique<int>(85); Sai: int* student_score = new int(85); Ví dụ sai vi phạm CPP-02 và CPP-03, kể cả khi đã gọi delete."]] },
+    structure: { title: "Cấu trúc dự án C++", file: "project_structure.md", category: "KỸ THUẬT", summary: "Vị trí mã nguồn, header, sản phẩm biên dịch và unit test.", sections: [["STRUCT-01 / STRUCT-02 · Cây thư mục", "/src: logic chính và file .cpp. /include: header .hpp/.h. /build: file sinh khi biên dịch. /tests: unit test. /docs: tài liệu quy định. Các đường dẫn tính từ gốc dự án C++ mẫu."], ["STRUCT-03 · Tổ chức mã", "Đặt khai báo trong include/StudentRecord.hpp, cài đặt trong src/StudentRecord.cpp, unit test trong tests/StudentRecordTest.cpp. Không viết mã nguồn trong build/; thêm /build/ vào .gitignore."], ["STRUCT-04 · Review", "Nêu đường dẫn file và mã quy định khi phát hiện lỗi. Nếu chỉ có đoạn code, không tự kết luận dự án thiếu thư mục hoặc test."]] },
     testing: { title: "Hướng dẫn viết test case", file: "testing_guide.md", category: "KIỂM THỬ", summary: "Cách mô tả đầu vào, thao tác và kết quả mong đợi.", sections: [["TEST-01 · Nội dung test case", "Mỗi test case có tên tình huống, điều kiện ban đầu, dữ liệu đầu vào, thao tác thực hiện và kết quả mong đợi."], ["TEST-02 · Nhóm tình huống", "Kiểm tra trường hợp hợp lệ, thiếu giá trị bắt buộc, giá trị không hợp lệ và ranh giới của quy tắc. Với mã duy nhất, cần xem xét trường hợp mã đã tồn tại."]] }
   };
 
@@ -204,9 +205,11 @@
     const overlay = document.getElementById("login-overlay");
     if (!state.currentUser) {
       if (overlay) overlay.hidden = false;
+      document.querySelector(".app-shell").inert = true;
       return false;
     }
     if (overlay) overlay.hidden = true;
+    document.querySelector(".app-shell").inert = false;
     return true;
   }
 
@@ -368,6 +371,11 @@
           <small>Tiếp tục từ nhiệm vụ gần nhất của em.</small>
         </div>
       </section>
+      <ol class="workflow-guide" aria-label="Cách thực hiện nhiệm vụ">
+        <li><span>1</span><div><strong>Đọc yêu cầu</strong><small>Chọn nhiệm vụ và xem tài liệu</small></div></li>
+        <li><span>2</span><div><strong>Làm bài, hỏi khi cần</strong><small>AI giúp gợi mở cách giải quyết</small></div></li>
+        <li><span>3</span><div><strong>Gửi mentor xem</strong><small>Nộp kết quả và nhận phản hồi</small></div></li>
+      </ol>
       <div class="work-grid">
         <div>
           <div class="section-title">
@@ -469,7 +477,7 @@
           </div>
         ` : ""}
       </div>
-    `).join("") + (pendingTask === task.id ? '<div class="chat-message"><div class="message-label">Đang chuẩn bị phản hồi…</div></div>' : "");
+    `).join("") + (pendingTask === task.id ? '<div class="chat-message typing-status" role="status"><span class="typing-dots" aria-hidden="true">● ● ●</span><div>AI đang đọc tài liệu và chuẩn bị phản hồi…<small>Bạn có thể tiếp tục xem yêu cầu trong lúc chờ.</small></div></div>' : "");
     log.scrollTop = log.scrollHeight;
   }
 
@@ -498,15 +506,20 @@
         body: JSON.stringify({
           code: "",
           message,
-          history: history.map(m => ({ role: m.role, content: m.content })),
+          history: history.slice(-4).map(m => ({ role: m.role, content: m.content })),
           task_id: task.id,
           task_context: { title: task.title, description: task.desc, document_ids: task.docs }
         })
       });
-      if (!response.ok) throw new Error(`Backend trả lỗi HTTP ${response.status}.`);
+      if (!response.ok) {
+        const failure = await response.json().catch(() => ({}));
+        throw new Error(typeof failure.detail === "string" ? failure.detail : `Backend trả lỗi HTTP ${response.status}.`);
+      }
       const result = await response.json();
       if (typeof result.reply !== "string" || !result.reply.trim()) throw new Error("Backend cần trả JSON có trường reply là chuỗi không rỗng.");
-      return { reply: result.reply, docs: result.docs || [] };
+      return { reply: result.reply, docs: (Array.isArray(result.docs) ? result.docs : [])
+        .map(source => Object.keys(docs).find(id => id === source || docs[id].file === source))
+        .filter(Boolean) };
     } finally {
       clearTimeout(timeout);
     }
@@ -824,6 +837,11 @@
   document.addEventListener("click", event => {
     const button = event.target.closest("button");
     if (!button) return;
+    if (button.dataset.demoUser) {
+      const user = state.users.find(u => u.id === button.dataset.demoUser);
+      if (user) { view = "work"; loginUser(user); }
+      return;
+    }
     if (button.dataset.role) {
       role = button.dataset.role;
       view = "work";
@@ -1040,5 +1058,6 @@
     toast("Đã đặt lại dữ liệu sạch ban đầu.");
   });
 
+  if (state.currentUser) role = state.currentUser.role;
   render();
 })();
