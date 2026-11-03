@@ -28,3 +28,175 @@
 @media(max-width:940px){.app-shell{grid-template-columns:170px minmax(0,1fr)}.sidebar-note{padding:17px 12px}.brand{font-size:23px;padding:0 4px;gap:8px}.brand small{font-size:7px;letter-spacing:1.2px}.brand-mark{width:34px;height:34px}.company{padding:9px}.company small{font-size:9px}.nav-item{font-size:11px;padding:11px 8px}.nav-label{font-size:8px;margin-left:7px}.work-grid{grid-template-columns:minmax(0,1fr)}.ai-panel{position:static}.task-card strong{font-size:12px;min-height:auto}.chat-log{min-height:180px;max-height:370px}.breadcrumb{display:none}.topbar{justify-content:space-between}.project-banner h2{font-size:18px}.banner-progress{width:140px}.knowledge-grid{grid-template-columns:minmax(0,1fr)}.knowledge-card{gap:10px}.stats-grid{gap:10px}.stat{padding:15px}.stat-icon{display:none}.stat-label{font-size:10px}}
 @media(max-width:650px){.app-shell{display:block}.sidebar{height:auto;position:static;overflow:visible;padding:16px;border-right:0;border-bottom:1px solid var(--line)}.brand{font-size:25px}.company,.sidebar-note,.sidebar-bottom,.nav-label{display:none}nav{flex-direction:row;margin-top:17px;gap:5px}.nav-item{flex:1;justify-content:center;gap:6px;font-size:10px;padding:11px 5px}.nav-item .icon{width:15px;height:15px}.topbar{padding:12px 16px;min-height:60px}.role-switch button{padding:8px 12px}.demo-badge{font-size:9px}#main-content{padding:23px 16px 10px}.page-heading{margin-bottom:21px}h1{font-size:25px}.page-heading p{font-size:11px}.project-banner{padding:21px;display:block}.project-banner h2{font-size:19px}.banner-progress{width:100%;margin-top:22px}.banner-progress small{display:none}.project-meta{margin-top:13px}.task-tabs{gap:7px}.task-card{padding:12px 9px}.task-card strong{font-size:10px;min-height:34px}.task-card .status{font-size:8px;padding:4px 5px}.panel-body{padding:17px}.task-bottom{padding:15px 17px}.panel-header{padding:17px}.task-detail h2{font-size:17px}.stats-grid{gap:7px}.stat{padding:13px 11px}.stat strong{font-size:25px}.stat small{font-size:9px;line-height:1.5;display:block}.stat-label{font-size:9px;line-height:1.6;display:block}.roster{gap:6px}.person-card{flex-direction:column;align-items:flex-start;padding:10px;gap:7px}.person-card strong{font-size:10px}.person-card small{font-size:8px}.summary-column{display:block}.mentor-note{margin-top:17px}.task-table th,.task-table td{padding:12px;font-size:10px}.task-table th{font-size:9px}.page-footer{padding:20px 16px;flex-direction:column;gap:5px}.composer textarea,.review-note,.task-bottom textarea{font-size:16px}.composer-note{font-size:10px}.heading-aside{display:none}.page-heading .btn{font-size:10px;padding:9px}.task-actions{flex-wrap:wrap}.task-actions .btn{margin-left:auto}.btn,.citation,.prompt-chip{min-height:38px}.icon-button{min-width:40px;min-height:40px}.chat-log{min-height:140px}.eyebrow{font-size:9px}}
 @media(prefers-reduced-motion:no-preference){button,a{transition:background .15s,border-color .15s}.progress-fill{transition:width .25s}.panel,.summary-card{animation:appear .2s ease-out}@keyframes appear{from{opacity:.7;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}}
+
+
+/* === ĐỊNH DẠNG VĂN BẢN MARKDOWN CHO CHAT (AI RESPONSE) === */
+.message-text .md-h2, .message-text .md-h3, .message-text .md-h4 {
+  color: var(--green-deep);
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.message-text .md-h2 { font-size: 14px; }
+.message-text .md-h3 { font-size: 13px; }
+.message-text .md-h4 { font-size: 12px; }
+.message-text .md-inline-code {
+  background: #eef3ed;
+  color: #1a4f3b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  border: 1px solid #d5e2d7;
+}
+.message-text .md-code-block {
+  background: #1e2925;
+  color: #d1fae5;
+  padding: 10px 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+.message-text .md-ul {
+  padding-left: 18px;
+  margin: 6px 0;
+}
+.message-text .md-li {
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+.message-text .md-gap {
+  height: 8px;
+}
+.message-text strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+
+/* === ĐỊNH DẠNG MARKDOWN TRONG TIMELINE LỊCH SỬ CỦA MENTOR === */
+.timeline-detail .md-h2, .timeline-detail .md-h3, .timeline-detail .md-h4 {
+  color: var(--green-deep);
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.timeline-detail .md-h2 { font-size: 13px; }
+.timeline-detail .md-h3 { font-size: 12px; }
+.timeline-detail .md-h4 { font-size: 11px; }
+.timeline-detail .md-inline-code {
+  background: #eef3ed;
+  color: #1a4f3b;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: Consolas, monospace;
+  font-size: 10px;
+  border: 1px solid #d5e2d7;
+}
+.timeline-detail .md-code-block {
+  background: #1e2925;
+  color: #d1fae5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  margin: 6px 0;
+  line-height: 1.5;
+}
+.timeline-detail .md-ul {
+  padding-left: 16px;
+  margin: 4px 0;
+}
+.timeline-detail .md-li {
+  margin-bottom: 3px;
+  line-height: 1.5;
+}
+.timeline-detail .md-gap {
+  height: 6px;
+}
+.timeline-detail strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+
+/* === GIAO DIỆN MÀN HÌNH ĐĂNG NHẬP (LOGIN OVERLAY) === */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 60, 48, 0.45);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  padding: 20px;
+}
+.login-overlay[hidden] {
+  display: none !important;
+}
+.login-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(18, 60, 48, 0.15);
+  width: 100%;
+  max-width: 480px;
+  padding: 32px 28px;
+  animation: appear .25s ease-out;
+}
+.login-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.login-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green-deep);
+  margin-bottom: 6px;
+}
+.login-header p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.form-group {
+  margin-bottom: 14px;
+}
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 13px;
+  background: #fafbfa;
+}
+.form-group input:focus {
+  background: #fff;
+  border-color: var(--green);
+  outline: none;
+}
+.btn-full {
+  width: 100%;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 650;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+.add-intern-btn {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 6px 12px;
+}

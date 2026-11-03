@@ -6,3 +6,5 @@ langchain-community
 chromadb
 sentence-transformers
 requests
+python-dotenv
+google-generativeai

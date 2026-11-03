@@ -23,6 +23,8 @@
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8zm0 0v5h5M8 12h8m-8 4h6"/></symbol>
     <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 1 8M3 3v7h7"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></symbol>
   </defs></svg>
   <div class="app-shell">
     <aside class="sidebar">
@@ -31,7 +33,11 @@
       <p class="nav-label">KHÔNG GIAN LÀM VIỆC</p>
       <nav id="main-nav" aria-label="Điều hướng chính"></nav>
       <div class="sidebar-note"><span class="tiny-pill">LOCAL AI</span><h3>Học từ công việc thật.</h3><p>Trợ lý đồng hành dựa trên tài liệu và quy trình của công ty.</p><div class="note-orbit" aria-hidden="true"><span>✳</span></div></div>
-      <div class="sidebar-bottom"><button class="reset-button" id="reset-demo"><svg class="icon"><use href="#i-reset"/></svg>Đặt lại dữ liệu demo</button><div class="profile" id="profile"></div></div>
+      <div class="sidebar-bottom">
+        <button class="reset-button" id="logout-btn" style="color:#b91c1c;margin-bottom:6px"><svg class="icon"><use href="#i-logout"/></svg>Đăng xuất</button>
+        <button class="reset-button" id="reset-demo"><svg class="icon"><use href="#i-reset"/></svg>Đặt lại dữ liệu demo</button>
+        <div class="profile" id="profile"></div>
+      </div>
     </aside>
     <div class="workspace">
       <header class="topbar">
@@ -43,6 +49,71 @@
       <footer class="page-footer"><span>Interna / Mini Hackathon 2026</span><span>Dữ liệu minh họa · Chuyển vai trò chỉ phục vụ demo</span></footer>
     </div>
   </div>
+
+  <!-- MÀN HÌNH ĐĂNG NHẬP (LOGIN OVERLAY) -->
+  <div id="login-overlay" class="login-overlay" hidden>
+    <div class="login-card">
+      <div class="login-header">
+        <div class="brand" style="justify-content:center;margin-bottom:14px">
+          <span class="brand-mark">in<span>·</span></span>
+          <span>interna<small>GROW THROUGH WORK</small></span>
+        </div>
+        <h2>Đăng nhập hệ thống</h2>
+        <p>Không gian làm việc & Đào tạo thực tập sinh Nova Tech</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email tài khoản</label>
+          <input type="email" id="login-email" placeholder="Nhập email của bạn..." required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Mật khẩu</label>
+          <input type="password" id="login-password" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn primary btn-full">Đăng nhập ngay</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL THÊM THỰC TẬP SINH DÀNH CHO MENTOR -->
+  <dialog id="add-intern-dialog" aria-labelledby="add-intern-title">
+    <div class="dialog-top">
+      <span class="eyebrow">QUẢN TRỊ VIÊN / MENTOR</span>
+      <button class="icon-button" id="close-add-intern" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <h2 id="add-intern-title">Thêm thực tập sinh mới</h2>
+    <p style="font-size:12px;color:var(--muted);margin-top:4px">Tạo tài khoản và cấp quyền truy cập vào không gian thực tập.</p>
+    <form id="add-intern-form" style="margin-top:18px;display:flex;flex-direction:column;gap:14px">
+      <div>
+        <label for="new-intern-name" style="display:block;font-size:11px;font-weight:600;margin-bottom:6px">Họ và Tên</label>
+        <input type="text" id="new-intern-name" placeholder="Ví dụ: Nguyễn Văn A" required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px">
+      </div>
+      <div>
+        <label for="new-intern-email" style="display:block;font-size:11px;font-weight:600;margin-bottom:6px">Gmail</label>
+        <input type="email" id="new-intern-email" placeholder="Ví dụ: nguyenvana@gmail.com" required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px">
+      </div>
+      <div>
+        <label for="new-intern-role" style="display:block;font-size:11px;font-weight:600;margin-bottom:6px">Vị trí thực tập</label>
+        <select id="new-intern-role" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="Backend Intern">Backend Intern</option>
+          <option value="Frontend Intern">Frontend Intern</option>
+          <option value="QA Intern">QA Intern</option>
+          <option value="AI / Data Intern">AI / Data Intern</option>
+        </select>
+      </div>
+      <div>
+        <label for="new-intern-password" style="display:block;font-size:11px;font-weight:600;margin-bottom:6px">Mật khẩu</label>
+        <input type="password" id="new-intern-password" placeholder="Nhập mật khẩu..." required style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px">
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">
+        <button type="button" class="btn" id="cancel-add-intern">Hủy bỏ</button>
+        <button type="submit" class="btn primary">Xác nhận tạo</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- MODAL XEM CHI TIẾT / TÀI LIỆU -->
   <dialog id="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="eyebrow">KNOWLEDGE BASE</span><button class="icon-button" id="close-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog>
   <div id="toast" role="status" aria-live="polite" hidden></div>
 </body>
