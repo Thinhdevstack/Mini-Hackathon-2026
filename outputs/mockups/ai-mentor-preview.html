@@ -1,0 +1,136 @@
+﻿<style>
+#mentor-preview{--mp-bg:light-dark(#f4f6f8,#14191f);--mp-panel:light-dark(#ffffff,#1c232c);--mp-text:light-dark(#1e293b,#e6edf5);--mp-muted:light-dark(#627087,#a4b2c5);--mp-border:light-dark(#dfe5ed,#344151);--mp-soft:light-dark(#edf3fa,#253245);--mp-brand:light-dark(#235cc4,#99bcff);--mp-button:light-dark(#245bc3,#a9c6ff);--mp-on-button:light-dark(#ffffff,#142a4c);font-family:Inter,"Segoe UI",sans-serif;color:var(--mp-text)}
+#mentor-preview *{box-sizing:border-box}
+#mentor-preview .mp-app{background:var(--mp-bg);border:1px solid var(--mp-border);border-radius:16px;overflow:hidden;min-height:650px}
+#mentor-preview .mp-header{display:flex;align-items:center;gap:12px;background:var(--mp-panel);padding:22px 110px 22px 24px;border-bottom:1px solid var(--mp-border)}
+#mentor-preview .mp-logo{display:grid;place-items:center;flex-shrink:0;width:38px;height:38px;background:var(--mp-soft);color:var(--mp-brand);border-radius:10px;font-family:monospace;font-size:18px;font-weight:500}
+#mentor-preview h2,#mentor-preview h3,#mentor-preview p{margin:0}
+#mentor-preview h2{font-size:18px;font-weight:500;line-height:1.5}
+#mentor-preview h3{font-size:14px;font-weight:500;line-height:1.5}
+#mentor-preview .mp-sub{color:var(--mp-muted);font-size:12px;line-height:1.6}
+#mentor-preview .mp-badge{margin-left:auto;font-size:11px;white-space:nowrap;border:1px solid var(--mp-border);padding:5px 9px;border-radius:20px;color:var(--mp-muted)}
+#mentor-preview .mp-main{padding:24px}
+#mentor-preview .mp-intro{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+#mentor-preview .mp-intro p{font-size:13px;color:var(--mp-muted);line-height:1.6;margin-top:4px}
+#mentor-preview .mp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+#mentor-preview .mp-panel{min-width:0;background:var(--mp-panel);border:1px solid var(--mp-border);border-radius:12px;display:flex;flex-direction:column}
+#mentor-preview .mp-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:14px 16px;border-bottom:1px solid var(--mp-border)}
+#mentor-preview button{font:inherit;font-size:12px;border:1px solid var(--mp-border);border-radius:7px;padding:8px 11px;background:var(--mp-panel);color:var(--mp-text)}
+#mentor-preview button:hover{background:var(--mp-soft)}
+#mentor-preview button:disabled{opacity:.6;cursor:wait}
+#mentor-preview button.mp-send{background:var(--mp-button);color:var(--mp-on-button);border-color:transparent;padding:10px 15px;white-space:nowrap}
+#mentor-preview .mp-file{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;color:var(--mp-muted);font:12px Consolas,monospace}
+#mentor-preview textarea{color:var(--mp-text);background:var(--mp-panel);border:0;width:100%;resize:vertical;font:13px/1.85 Consolas,monospace;min-height:312px;padding:8px 18px 18px;tab-size:4}
+#mentor-preview .mp-foot{padding:12px 16px;margin-top:auto;border-top:1px solid var(--mp-border);font-size:11px;line-height:1.6;color:var(--mp-muted)}
+#mentor-preview .mp-messages{padding:16px;display:flex;flex-direction:column;gap:16px;flex:1;overflow-wrap:anywhere}
+#mentor-preview .mp-user{align-self:flex-end;background:var(--mp-soft);padding:11px 13px;border-radius:11px 11px 3px 11px;font-size:13px;line-height:1.6;max-width:90%}
+#mentor-preview .mp-answer{font-size:13px;line-height:1.75;white-space:pre-wrap}
+#mentor-preview .mp-author{color:var(--mp-brand);font-size:12px;font-weight:500;margin-bottom:6px}
+#mentor-preview .mp-rule{display:inline-block;color:var(--mp-brand);background:var(--mp-soft);padding:3px 7px;border-radius:5px;font-size:11px;margin-top:9px}
+#mentor-preview .mp-composer{padding:12px;border-top:1px solid var(--mp-border)}
+#mentor-preview .mp-input-row{display:flex;gap:8px}
+#mentor-preview input{min-width:0;flex:1;background:var(--mp-bg);border:1px solid var(--mp-border);border-radius:7px;padding:10px 11px;font:13px "Segoe UI",sans-serif;color:var(--mp-text)}
+#mentor-preview .mp-hint{font-size:11px;color:var(--mp-muted);line-height:1.6;margin-top:8px}
+#mentor-preview .mp-footer{margin-top:16px;font-size:11px;color:var(--mp-muted);line-height:1.6}
+#mentor-preview .mp-stacked .mp-grid{grid-template-columns:minmax(0,1fr)}
+#mentor-preview .mp-stacked textarea{min-height:150px;max-height:210px}
+#mentor-preview .mp-stacked .mp-messages{gap:10px}
+#mentor-preview .mp-stacked .mp-app{min-height:650px}
+@media(max-width:650px){#mentor-preview .mp-header{padding:18px 100px 18px 16px;flex-wrap:wrap}#mentor-preview .mp-badge{margin-left:0;white-space:normal;max-width:100%}#mentor-preview .mp-main{padding:14px}#mentor-preview .mp-grid{grid-template-columns:minmax(0,1fr)}#mentor-preview textarea{min-height:235px}#mentor-preview .mp-intro{align-items:flex-start}#mentor-preview .mp-input-row{flex-wrap:wrap}#mentor-preview input{font-size:16px;width:100%}#mentor-preview .mp-send{min-height:42px}}
+</style>
+<div id="mentor-preview">
+  <div class="viz-carousel" aria-label="Mẫu giao diện AI Mentor" data-previous-label="Mẫu trước" data-next-label="Mẫu tiếp">
+    <section data-variant="Hai cột" aria-label="Giao diện hai cột">
+      <div class="mp-app">
+        <header class="mp-header">
+          <div class="mp-logo" aria-hidden="true">&lt;/&gt;</div>
+          <div><h2>AI Mentor</h2><div class="mp-sub">Học từ lỗi. Tự viết lời giải.</div></div>
+          <span class="mp-badge">Bản mẫu · Chưa kết nối AI</span>
+        </header>
+        <main class="mp-main">
+          <div class="mp-intro"><div><h2>Góc review C++</h2><p>Đưa code của bạn vào đây, cùng Mentor tìm hướng cải thiện.</p></div></div>
+          <div class="mp-grid">
+            <section class="mp-panel" aria-label="Nhập mã nguồn">
+              <div class="mp-bar"><h3>Mã nguồn của bạn</h3><button type="button" class="mp-load">Nạp code mẫu</button></div>
+              <div class="mp-file"><span>demo.cpp</span><span>C++17</span></div>
+              <textarea class="mp-code" aria-label="Mã nguồn C++" spellcheck="false">class Intern {
+public:
+    int Intern_age;
+
+    Intern(int age) {
+        Intern_age = age;
+    }
+};</textarea>
+              <div class="mp-foot">Bạn tự chỉnh sửa code dựa trên gợi ý của Mentor.</div>
+            </section>
+            <section class="mp-panel" aria-label="Hội thoại với Mentor">
+              <div class="mp-bar"><h3>Trao đổi với Mentor</h3><button type="button" class="mp-clear">Xóa hội thoại</button></div>
+              <div class="mp-messages" aria-live="polite" aria-relevant="additions text">
+                <div class="mp-user">Review giúp em cách đặt tên biến.</div>
+                <div><div class="mp-author">MENTOR · PHẢN HỒI MẪU</div><div class="mp-answer">Biến <strong>Intern_age</strong> chưa tuân thủ camelCase theo luật CPP-04.
+
+Em hãy thử đặt lại tên: từ đầu viết thường, các từ tiếp theo viết hoa chữ cái đầu. Sau đó kiểm tra những chỗ đang sử dụng biến này.
+
+Em sẽ chọn tên nào?</div><span class="mp-rule">cpp_rule.md · CPP-04</span></div>
+              </div>
+              <form class="mp-composer"><div class="mp-input-row"><input class="mp-question" aria-label="Câu hỏi cho Mentor" placeholder="Em chưa hiểu vì sao…" autocomplete="off"><button type="submit" class="mp-send">Gửi ↑</button></div><div class="mp-hint">Mentor gợi ý để bạn tự làm, không viết lời giải thay bạn.</div></form>
+            </section>
+          </div>
+          <div class="mp-footer">Demo giao diện · Tin nhắn trả lời được giả lập, chưa phân tích code thực tế.</div>
+        </main>
+      </div>
+    </section>
+    <section data-variant="Từng bước" class="mp-stacked" aria-label="Giao diện theo từng bước" hidden></section>
+  </div>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('mentor-preview');
+  const first = root.querySelector('[data-variant="Hai cột"]');
+  const second = root.querySelector('[data-variant="Từng bước"]');
+  second.appendChild(first.querySelector('.mp-app').cloneNode(true));
+  second.querySelector('.mp-intro h2').textContent = 'Một đoạn code. Một điều mới.';
+  second.querySelectorAll('.mp-bar h3')[0].textContent = '1. Đưa code vào';
+  second.querySelectorAll('.mp-bar h3')[1].textContent = '2. Cùng Mentor xem lại';
+  const sample = first.querySelector('.mp-code').value;
+  root.querySelectorAll('[data-variant]').forEach(section => {
+    const code = section.querySelector('.mp-code');
+    const question = section.querySelector('.mp-question');
+    const messages = section.querySelector('.mp-messages');
+    const send = section.querySelector('.mp-send');
+    const clear = section.querySelector('.mp-clear');
+    const initial = messages.innerHTML;
+    let pending = false;
+    section.querySelector('.mp-load').addEventListener('click', () => {code.value = sample;});
+    clear.addEventListener('click', () => {
+      if (pending) return;
+      messages.replaceChildren();
+      const welcome = document.createElement('div');
+      welcome.className = 'mp-answer';
+      welcome.textContent = 'Em muốn tìm hiểu điều gì trong đoạn code của mình?';
+      messages.appendChild(welcome);
+    });
+    section.querySelector('form').addEventListener('submit', event => {
+      event.preventDefault();
+      const value = question.value.trim();
+      if (!value || pending) {question.focus();return;}
+      pending = true;
+      const user = document.createElement('div');
+      user.className = 'mp-user'; user.textContent = value; messages.appendChild(user);
+      question.value = ''; send.disabled = true; clear.disabled = true;
+      const answer = document.createElement('div'); answer.className = 'mp-answer';
+      answer.textContent = 'Mentor đang phân tích… (giả lập)'; messages.appendChild(answer);
+      setTimeout(() => {
+        answer.textContent = 'PHẢN HỒI GIẢ LẬP\n\nMentor sẽ chỉ ra vấn đề, dẫn quy định liên quan và gợi ý bước tiếp theo để em tự sửa.\n\nỞ bản mẫu này, nội dung trả lời được chuẩn bị sẵn; câu hỏi và code của em chưa được gửi tới AI.';
+        pending = false; send.disabled = false; clear.disabled = false;
+      }, 650);
+    });
+  });
+  if (globalThis.Tweak) {
+    const settings = {rounded:12};
+    const tweak = new Tweak({container:root,onChange:() => root.querySelectorAll('.mp-panel').forEach(p=>p.style.borderRadius=settings.rounded+'px')});
+    tweak.addSlider(settings,'rounded',{label:'Bo góc khung',min:0,max:20,unit:'px'});
+  }
+})();
+</script>
+
