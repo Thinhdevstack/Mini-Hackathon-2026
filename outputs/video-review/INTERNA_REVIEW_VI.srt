@@ -1,0 +1,260 @@
+1
+00:00:00,220 --> 00:00:02,933
+Xin chào ban giám khảo và các bạn!
+
+2
+00:00:02,933 --> 00:00:08,833
+Đây là Interna, không gian đào tạo và kèm cặp thực tập sinh công nghệ với trợ
+
+3
+00:00:08,833 --> 00:00:14,836
+lý trí tuệ nhân tạo. Hãy cùng khám phá sản phẩm qua một vòng làm việc thực
+
+4
+00:00:14,836 --> 00:00:15,412
+tế.
+
+5
+00:00:16,095 --> 00:00:21,662
+Khi đào tạo nhân sự mới, người hướng dẫn phải trả lời nhiều câu hỏi lặp lại,
+
+6
+00:00:21,662 --> 00:00:24,696
+nhưng vẫn khó nhìn thấy quá trình tự học.
+
+7
+00:00:24,696 --> 00:00:30,138
+Ở chiều ngược lại, thực tập sinh bỡ ngỡ với quy chuẩn công ty và dễ phụ
+
+8
+00:00:30,138 --> 00:00:34,423
+thuộc vào việc sao chép câu trả lời từ công cụ tạo mã.
+
+9
+00:00:34,423 --> 00:00:37,863
+Làm sao để học nhanh hơn mà vẫn hiểu bản chất?
+
+10
+00:00:38,553 --> 00:00:44,396
+Interna kết nối ba thành phần: nhiệm vụ thực tế, kho tài liệu nội bộ và người
+
+11
+00:00:44,396 --> 00:00:48,324
+hướng dẫn. Trợ lý đóng vai trò người thầy nghiêm khắc:
+
+12
+00:00:48,324 --> 00:00:54,066
+gợi mở cách giải quyết, nhắc quy chuẩn và khuyến khích người học tự thực hiện.
+
+13
+00:00:54,066 --> 00:01:00,009
+Lịch sử tương tác trở thành minh chứng
+để người hướng dẫn trao đổi và đánh giá.
+
+14
+00:01:00,678 --> 00:01:05,448
+Lộ trình có ba mốc. Ba mươi phần trăm là bản hiện tại:
+
+15
+00:01:05,448 --> 00:01:11,890
+giao diện hai vai trò, luồng nộp và
+duyệt bài, cùng truy xuất tài liệu bằng ChromaDB.
+
+16
+00:01:11,890 --> 00:01:17,008
+Kiến trúc hỗ trợ chuyển giữa Ollama nội bộ và Gemini trên đám mây.
+
+17
+00:01:17,008 --> 00:01:22,927
+Mốc sáu mươi phần trăm dự kiến bổ sung cơ sở dữ liệu tập trung và triển
+
+18
+00:01:22,927 --> 00:01:29,090
+khai bằng Docker lên Cloud Run. Mốc một
+trăm phần trăm hướng tới nhiều tác tử chuyên
+
+19
+00:01:29,090 --> 00:01:31,422
+trách và báo cáo năng lực.
+
+20
+00:01:32,095 --> 00:01:37,836
+Bây giờ là thao tác thực tế. Tôi vào tài khoản mẫu của Hữu Đạt, chọn nhiệm
+
+21
+00:01:37,836 --> 00:01:43,705
+vụ thiết kế dữ liệu. Màn hình đặt yêu cầu, danh sách kết quả cần đạt, tài
+
+22
+00:01:43,705 --> 00:01:46,781
+liệu liên quan và khung trợ lý cạnh nhau.
+
+23
+00:01:46,781 --> 00:01:51,127
+Người học biết mình cần làm gì và tìm thông tin ở đâu.
+
+24
+00:01:51,803 --> 00:01:57,374
+Mở tài liệu yêu cầu dự án, ta thấy bảy trường của hồ sơ thực tập sinh.
+
+25
+00:01:57,374 --> 00:02:01,714
+Mã phải duy nhất, ngày kết thúc không được trước ngày bắt đầu.
+
+26
+00:02:01,714 --> 00:02:07,069
+Tiêu chí nghiệm thu được trình bày rõ ràng, và lần mở tài liệu này cũng được
+
+27
+00:02:07,069 --> 00:02:09,131
+lưu vào lịch sử hoạt động.
+
+28
+00:02:09,803 --> 00:02:13,573
+Thử yêu cầu: anh chị viết hộ em code bài này với!
+
+29
+00:02:13,573 --> 00:02:17,248
+Phản hồi thật từ mô hình nội bộ đã xuất hiện.
+
+30
+00:02:17,248 --> 00:02:22,840
+Thay vì đưa một bài giải hoàn chỉnh, trợ lý nhắc quy tắc tự học, dẫn tài
+
+31
+00:02:22,840 --> 00:02:27,772
+liệu và hỏi lại về cấu trúc dữ liệu cùng cách kiểm tra ngày tháng.
+
+32
+00:02:27,772 --> 00:02:32,075
+Đây là điểm nhấn: trợ lý giúp người học tiếp tục suy nghĩ.
+
+33
+00:02:32,762 --> 00:02:37,384
+Tiếp theo: nếu mã thực tập sinh bị trùng thì xử lý thế nào?
+
+34
+00:02:37,384 --> 00:02:43,359
+Trợ lý trả lời theo quy định mã duy nhất, kèm nguồn tài liệu để đối chiếu.
+
+35
+00:02:43,359 --> 00:02:48,872
+Người học có thể quay lại yêu cầu gốc và tự đề xuất cách xử lý.
+
+36
+00:02:48,872 --> 00:02:54,616
+Đây là luồng truy xuất tài liệu hỗ trợ trả lời, đang chạy qua backend của sản
+
+37
+00:02:54,616 --> 00:02:55,178
+phẩm.
+
+38
+00:02:55,845 --> 00:03:01,360
+Tôi bắt đầu nhiệm vụ, đánh dấu các mục đã thực hiện và nhập kết quả:
+
+39
+00:03:01,360 --> 00:03:06,101
+đã đọc yêu cầu, đề xuất hồ sơ gồm bảy trường dữ liệu.
+
+40
+00:03:06,101 --> 00:03:11,817
+Phần vướng mắc nêu rõ câu hỏi: nên kiểm tra ngày tháng ở phía giao diện hay
+
+41
+00:03:11,817 --> 00:03:16,895
+máy chủ? Bấm gửi người hướng dẫn xem, nhiệm vụ chuyển sang chờ duyệt.
+
+42
+00:03:16,895 --> 00:03:20,493
+Việc nộp bài luôn đi cùng giải thích quá trình.
+
+43
+00:03:21,178 --> 00:03:26,695
+Chuyển sang tài khoản người hướng dẫn, ta
+thấy danh sách thực tập sinh và bài đang
+
+44
+00:03:26,695 --> 00:03:30,088
+chờ. Chọn Hữu Đạt để xem dấu vết làm việc:
+
+45
+00:03:30,088 --> 00:03:35,509
+đã mở tài liệu nào, hỏi trợ lý điều gì và nhận phản hồi ra sao.
+
+46
+00:03:35,509 --> 00:03:39,314
+Những dữ liệu này bổ sung ngữ cảnh cho buổi trao đổi;
+
+47
+00:03:39,314 --> 00:03:42,706
+quyết định đánh giá vẫn thuộc về người hướng dẫn.
+
+48
+00:03:43,387 --> 00:03:46,823
+Mở bài gửi để đọc kết quả và vướng mắc.
+
+49
+00:03:46,823 --> 00:03:52,411
+Tôi phản hồi: cần kiểm tra ở cả giao diện lẫn máy chủ, để vừa hướng dẫn
+
+50
+00:03:52,411 --> 00:03:56,296
+người dùng, vừa bảo vệ tính hợp lệ của dữ liệu.
+
+51
+00:03:56,296 --> 00:04:01,788
+Sau khi xem bài và giải đáp câu hỏi, người hướng dẫn chọn duyệt hoàn thành.
+
+52
+00:04:01,788 --> 00:04:05,995
+Trạng thái chuyển sang màu xanh, và tiến độ được cập nhật.
+
+53
+00:04:06,678 --> 00:04:11,043
+Người hướng dẫn cũng có thể thêm hồ sơ thực tập sinh mới.
+
+54
+00:04:11,043 --> 00:04:16,809
+Ở đây tôi tạo hồ sơ mẫu Nguyễn Văn An, vị trí lập trình phía máy chủ.
+
+55
+00:04:16,809 --> 00:04:19,358
+Bản hiện tại là môi trường minh họa:
+
+56
+00:04:19,358 --> 00:04:24,678
+đăng nhập được mô phỏng và dữ liệu nghiệp vụ lưu trên trình duyệt đang dùng.
+
+57
+00:04:25,345 --> 00:04:30,725
+Trong tương lai, Interna dự kiến tích hợp tác tử kiểm tra mã và bảo mật vào
+
+58
+00:04:30,725 --> 00:04:36,198
+quy trình duyệt thay đổi trên Git. Báo cáo năng lực có thể tổng hợp từ bài
+
+59
+00:04:36,198 --> 00:04:40,435
+làm và lịch sử trao đổi để hỗ trợ đánh giá cuối kỳ.
+
+60
+00:04:40,435 --> 00:04:45,815
+Hướng phát triển tiếp theo là dịch vụ
+cho doanh nghiệp và trường đại học, với dữ
+
+61
+00:04:45,815 --> 00:04:48,505
+liệu tập trung và phân quyền thực tế.
+
+62
+00:04:49,178 --> 00:04:52,352
+Interna hướng tới một vòng học tập trọn vẹn:
+
+63
+00:04:52,352 --> 00:04:56,760
+nhận việc, tự tìm hiểu, thực hành và nhận phản hồi.
+
+64
+00:04:56,760 --> 00:05:02,402
+Cảm ơn ban giám khảo và các bạn đã theo dõi bản giới thiệu sản phẩm!

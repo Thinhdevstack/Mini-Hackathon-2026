@@ -1,5 +1,7 @@
 // Dữ liệu mồi cho video demo Interna: cố tình vi phạm luật công ty.
 // Chỉ dùng để copy/paste vào Web App, không dùng trong mã sản phẩm.
+// Cố tình bỏ quên giải phóng mảng đã cấp phát.
+
 
 #include <iostream>
 
@@ -10,7 +12,7 @@ public:
     }
 
     ~DatabaseConnection() {
-        // Cố tình bỏ quên giải phóng mảng đã cấp phát.
+
         std::cout << "Connection closed\n";
     }
 
